@@ -1,11 +1,15 @@
 # megoldás
 
 
-def eredmeny(jatekos_lapok: [int], gep_lapok: [int]):
-    if lapok_osszege(jatekos_lapok) > 21:
-        print("Játékos vesztett")
-    if lapok_osszege(gep_lapok) > 21:
-        print("Gép vesztett")
+def eredmeny(jatekos_lapok: [int], gep_lapok: [int]) -> str:
+    jatekos_pont: int = lapok_osszege(jatekos_lapok)
+    gep_pont: int = lapok_osszege(gep_lapok)
+    if jatekos_pont > 21 and gep_pont > 21:
+        return "Ház nyert"
+    elif jatekos_pont > 21:
+        return "Gép vesztett"
+    else:
+        return "Játékos vesztett"
 
 
 def lapok_osszege(lapok: [int]) -> int:
