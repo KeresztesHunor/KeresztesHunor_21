@@ -20,3 +20,7 @@ def lapok_osszege(lapok: [int]) -> int:
 
 
 # teszt esetek
+
+
+def jatekos_nyert_teszt():
+    print(eredmeny([10, 9, 2], [10, 9, 3]))
