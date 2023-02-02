@@ -7,9 +7,9 @@ def eredmeny(jatekos_lapok: [int], gep_lapok: [int]) -> str:
     if jatekos_pont > 21 and gep_pont > 21:
         return "Ház nyert"
     elif jatekos_pont > 21:
-        return "Gép vesztett"
-    else:
         return "Játékos vesztett"
+    else:
+        return "Gép vesztett"
 
 
 def lapok_osszege(lapok: [int]) -> int:
@@ -23,4 +23,4 @@ def lapok_osszege(lapok: [int]) -> int:
 
 
 def jatekos_nyert_teszt():
-    print(eredmeny([10, 9, 2], [10, 9, 3]))
+    print("sikeres" if eredmeny([10, 9, 2], [10, 9, 3]) == "Gép vesztett" else "sikertelen")
