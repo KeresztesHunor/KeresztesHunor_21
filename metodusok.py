@@ -61,7 +61,7 @@ def jatekos_nyert_tobb_ponttal_teszt():
 def jatekos_nyert_gep_kifutasaval_teszt():
     jatekos_lapok: [int] = [10, 9, 2]
     gep_lapok: [int] = [10, 9, 3]
-    vart_eredmeny: str = "J nyert"
+    vart_eredmeny: str = "G vesztett"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("játékos nyert a gép kifutásával teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -85,9 +85,9 @@ def gep_nyert_tobb_ponttal_teszt():
 def gep_nyert_jatekos_kifutasaval_teszt():
     jatekos_lapok: [int] = [10, 9, 3]
     gep_lapok: [int] = [10, 9, 2]
-    vart_eredmeny: str = "G nyert"
+    vart_eredmeny: str = "J vesztett"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
-    print("gép nyert a gép kifutásával teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
+    print("gép nyert a játékos kifutásával teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
 
 def gep_nyert_kevesebb_lappal_teszt():
