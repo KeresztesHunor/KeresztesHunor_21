@@ -23,4 +23,6 @@ def lapok_osszege(lapok: [int]) -> int:
 
 
 def jatekos_nyert_teszt():
-    print("sikeres" if eredmeny([10, 9, 2], [10, 9, 3]) == "Gép vesztett" else "sikertelen")
+    vart_eredmeny: str = "Gép vesztett"
+    kapott_eredmeny: str = eredmeny([10, 9, 2], [10, 9, 3])
+    print("játékos nyert teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
