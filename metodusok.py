@@ -2,14 +2,31 @@
 
 
 def eredmeny(jatekos_lapok: [int], gep_lapok: [int]) -> str:
-    jatekos_pont: int = lapok_osszege(jatekos_lapok)
-    gep_pont: int = lapok_osszege(gep_lapok)
-    if jatekos_pont > 21 and gep_pont > 21:
-        return "Ház nyert"
-    elif jatekos_pont > 21:
-        return "Játékos vesztett"
+    jp: int = lapok_osszege(jatekos_lapok)
+    gp: int = lapok_osszege(gep_lapok)
+    j_db: int = len(jatekos_lapok)
+    g_db: int = len(gep_lapok)
+    s: str = ""
+    if jp <= 21 and gp <= 21:
+        if jp > gp:
+            s = "J nyert"
+        elif gp > jp:
+            s = "G nyert"
+        elif gp == jp:
+            if j_db < g_db:
+                s = "J nyert"
+            elif g_db > j_db:
+                s = "G nyert"
+            else:
+                s = "döntetlen, osztozok a nyereségen"
     else:
-        return "Gép vesztett"
+        if jp > 21:
+            s = "J vesztett"
+        if gp > 21:
+            s = "G veszített"
+        if jp > 21 and gp > 21:
+            s = "döntetlen, a ház nyert"
+    return s
 
 
 def lapok_osszege(lapok: [int]) -> int:
@@ -36,7 +53,7 @@ def teszt_esetek():
 def jatekos_nyert_tobb_ponttal_teszt():
     jatekos_lapok: [int] = [10, 9, 2]
     gep_lapok: [int] = [10, 9, 1]
-    vart_eredmeny: str = "Gép vesztett"
+    vart_eredmeny: str = "J nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("játékos nyert több ponttal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -44,7 +61,7 @@ def jatekos_nyert_tobb_ponttal_teszt():
 def jatekos_nyert_gep_kifutasaval_teszt():
     jatekos_lapok: [int] = [10, 9, 2]
     gep_lapok: [int] = [10, 9, 3]
-    vart_eredmeny: str = "Gép vesztett"
+    vart_eredmeny: str = "J nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("játékos nyert a gép kifutásával teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -52,7 +69,7 @@ def jatekos_nyert_gep_kifutasaval_teszt():
 def jatekos_nyert_kevesebb_lappal_teszt():
     jatekos_lapok: [int] = [10, 9, 2]
     gep_lapok: [int] = [10, 8, 2, 1]
-    vart_eredmeny: str = "Gép vesztett"
+    vart_eredmeny: str = "J nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("játékos nyert kevesebb lappal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -60,7 +77,7 @@ def jatekos_nyert_kevesebb_lappal_teszt():
 def gep_nyert_tobb_ponttal_teszt():
     jatekos_lapok: [int] = [10, 9, 1]
     gep_lapok: [int] = [10, 9, 2]
-    vart_eredmeny: str = "Játékos vesztett"
+    vart_eredmeny: str = "G nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("gép nyert több ponttal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -68,7 +85,7 @@ def gep_nyert_tobb_ponttal_teszt():
 def gep_nyert_jatekos_kifutasaval_teszt():
     jatekos_lapok: [int] = [10, 9, 3]
     gep_lapok: [int] = [10, 9, 2]
-    vart_eredmeny: str = "Játékos vesztett"
+    vart_eredmeny: str = "G nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("gép nyert a gép kifutásával teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -76,7 +93,7 @@ def gep_nyert_jatekos_kifutasaval_teszt():
 def gep_nyert_kevesebb_lappal_teszt():
     jatekos_lapok: [int] = [10, 8, 2, 1]
     gep_lapok: [int] = [10, 9, 2]
-    vart_eredmeny: str = "Játékos vesztett"
+    vart_eredmeny: str = "G nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("gép nyert kevesebb lappal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -84,7 +101,7 @@ def gep_nyert_kevesebb_lappal_teszt():
 def dontetlen_teszt():
     jatekos_lapok: [int] = [10, 9, 2]
     gep_lapok: [int] = [10, 9, 2]
-    vart_eredmeny: str = "Döntetlen"
+    vart_eredmeny: str = "döntetlen, osztozok a nyereségen"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("döntetlen teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
@@ -92,6 +109,6 @@ def dontetlen_teszt():
 def haz_nyert_teszt():
     jatekos_lapok: [int] = [10, 9, 3]
     gep_lapok: [int] = [10, 9, 3]
-    vart_eredmeny: str = "Ház nyert"
+    vart_eredmeny: str = "döntetlen, a ház nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("ház nyert teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
