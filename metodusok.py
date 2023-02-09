@@ -15,7 +15,7 @@ def eredmeny(jatekos_lapok: [int], gep_lapok: [int]) -> str:
         elif gp == jp:
             if j_db < g_db:
                 s = "J nyert"
-            elif g_db > j_db:
+            elif g_db < j_db:
                 s = "G nyert"
             else:
                 s = "döntetlen, osztozok a nyereségen"
@@ -46,6 +46,11 @@ def teszt_esetek():
     gep_nyert_tobb_ponttal_teszt()
     gep_nyert_jatekos_kifutasaval_teszt()
     gep_nyert_kevesebb_lappal_teszt()
+    jatekos_nyert_19_ponttal_de_tobb_lappal_teszt()
+    gep_nyert_19_ponttal_de_tobb_lappal_teszt()
+    jatekos_nyert_19_ponttal_de_kevesebb_lappal_teszt()
+    gep_nyert_19_ponttal_de_kevesebb_lappal_teszt()
+    dontetlen_kevesebb_mint_21gyel_teszt()
     dontetlen_teszt()
     haz_nyert_teszt()
 
@@ -96,6 +101,46 @@ def gep_nyert_kevesebb_lappal_teszt():
     vart_eredmeny: str = "G nyert"
     kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
     print("gép nyert kevesebb lappal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
+
+
+def jatekos_nyert_19_ponttal_de_tobb_lappal_teszt():
+    jatekos_lapok: [int] = [10, 6, 2, 1]
+    gep_lapok: [int] = [10, 7, 1]
+    vart_eredmeny: str = "J nyert"
+    kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
+    print("játékos nyert 19 ponttal de több lappal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
+
+
+def gep_nyert_19_ponttal_de_tobb_lappal_teszt():
+    jatekos_lapok: [int] = [10, 7, 1]
+    gep_lapok: [int] = [10, 6, 2, 1]
+    vart_eredmeny: str = "G nyert"
+    kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
+    print("gép nyert 19 ponttal de több lappal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
+
+
+def jatekos_nyert_19_ponttal_de_kevesebb_lappal_teszt():
+    jatekos_lapok: [int] = [10, 8, 1]
+    gep_lapok: [int] = [10, 6, 2, 1]
+    vart_eredmeny: str = "J nyert"
+    kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
+    print("játékos nyert 19 ponttal de kevesebb lappal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
+
+
+def gep_nyert_19_ponttal_de_kevesebb_lappal_teszt():
+    jatekos_lapok: [int] = [10, 6, 2, 1]
+    gep_lapok: [int] = [10, 8, 1]
+    vart_eredmeny: str = "G nyert"
+    kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
+    print("gép nyert 19 ponttal de kevesebb lappal teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
+
+
+def dontetlen_kevesebb_mint_21gyel_teszt():
+    jatekos_lapok: [int] = [10, 9, 1]
+    gep_lapok: [int] = [10, 9, 1]
+    vart_eredmeny: str = "döntetlen, osztozok a nyereségen"
+    kapott_eredmeny: str = eredmeny(jatekos_lapok, gep_lapok)
+    print("döntetlen kevesebb mint 21-gyel teszt " + ("sikeres" if vart_eredmeny == kapott_eredmeny else "sikertelen"))
 
 
 def dontetlen_teszt():
